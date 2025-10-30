@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+
+<body>
+<p class="editor-note">selam ben <strong>Yusuf</strong> </p>
+
+<img  width="100px" height="100px" alt="Profil Fotosu" src="https://raw.githubusercontent.com/YuCaIb/YuCaIb.github.io/refs/heads/main/src/assets/profile.jpg">
+<br>
+<br>
+
+<div class="flex flex-col">
+    <input placeholder="15.01.200" type="date" disabled content="" />
+    <input placeholder="dene" type="file"/>
+    <input placeholder="dene" type="text" autocomplete="deneme"/>
+    <a href="https://www.github.com/yucaib" title="Yucaib"> github</a>
+</div>
+
+
+<br>
+<br>
+<p id="noWhitespace">Dogs are silly.</p>
+
+<p id="whitespace">Dogs
+    are
+    silly.</p>
+
+
+<p>bazı karakterleri böyle yazmak gerekiyor   &lt;   &gt; &quot; &apos; &amp;</p>
+
+<h1>h1 </h1>
+<h2>h2</h2>
+<h3>h3...</h3>
+
+<em>bu biraz daha emphasize, vurgu yappıyor.</em>
+<br>
+<br>
+
+<ol>
+    <li>asd</li>
+    <li>asd</li>
+    <li>asd</li>
+    <li>asd</li>
+</ol>
+<ul>
+    <li> list </li>
+    <li> list </li>
+    <li> list </li>
+    <li> list </li>
+</ul>
+
+<br>
+
+
+<br>
+<dl>
+    <dt>Love</dt>
+    <dd>The glue that binds the world together.
+    </dd>
+    <dt>Eggs</dt>
+    <dd>The glue that binds the cake together.
+    </dd>
+    <dt>coffe</dt>
+    <dd>The drink that gets the world running in the morning.
+        A light brown color.</dd>
+</dl>
+<br>
+<h1>Basic HTML Animals</h1>
+
+<p>This is the first paragraph in our page. It introduces our animals.</p>
+<h2>The Llama</h2>
+<p>Our Llama is a big fan of list items. When she spies a patch of them on a web page, she will eat them like sweets, licking her lips as she goes.</p>
+<h3>
+    The Anaconda
+
+</h3>
+<p>
+    The crafty anaconda likes to slither around the page, traveling rapidly by way of anchors to sneak up on his prey.
+
+</p>
+
+<h1>Looking at lists</h1>
+
+<p>Turn the following list of my favorite vegetables into an unordered list.</p>
+<ul>
+    <li>Cucumber</li>
+    <li>Broccoli</li>
+    <li>Asparagus</li>
+    <li>Pepper</li>
+</ul>
+
+<p>Turn the following directions into an ordered list.</p>
+<ol>
+    <li>
+        First knock on the door
+
+    </li>
+    <li>
+        When prompted, say the magic word
+    </li>
+    <li>
+        Wait for at least 5 seconds
+    </li>
+    <li>
+        Turn the handle and push
+    </li>
+</ol>
+
+<address>Chris Mills, Manchester, The Grim North, UK</address>
+
+
+
+<p>My birthday is on the 25<sup>th</sup> of May 2001.</p>
+<p>
+    Caffeine's chemical formula is
+    C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub>.
+</p>
+<p>If x<sup>2</sup> is 9, x must equal 3 or -3.</p>
+//super script yukarı sub script aşşağı alıyor. matematiksel formüllerde işe yarar
+
+<br>
+<div><p>python toplam fonksyionu böyle yazılıyor</p>
+    <p>code tag</p>
+    <code>
+    topla(a,b):
+
+        return a+b
+    </code>
+    <p>pre tag</p>
+    <pre>
+        bol(a,b):
+            <var>divison</var> = a/b
+            return <var>divison</var>
+    </pre>
+    <p>kbd</p>
+    <kbd>
+        carp(a,b):
+            <var>multipy</var> = a*b
+            return <var>multipy</var>
+    </kbd>
+    <p>çıktı için</p>
+    <code>print('selam')</code>
+    <samp>
+        selam
+    </samp>
+    <br>
+
+    <time datetime="2016-01-20">20 January 2016</time>
+
+
+    <br>
+</div>
+
+<div><h1>Advanced text semantics</h1>
+
+    <p>Let's start with a quote:</p>
+
+    <p>
+        <abbr title=" Hypertext Markup Language">HTML</abbr>, is by default accessible, if used correctly.
+    </p>
+    <blockquote cite="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility">
+        <p><abbr title="Cascading Style Sheets">CSS</abbr> can also be used to make web pages more, or less, accessible.</p>
+
+        <p>Chemical Formulae: <abbr title="Water">H<sub>2</sub>O </abbr>, <abbr title="Ethanol">C<sub>2</sub>H<sub>6</sub>O</abbr>.</p>
+
+        <p>
+            Dates: <time datetime="2019-12-25" ><abbr title="Christmas Day">December 25 2019 </abbr></time> , <time datetime="2019-11-02" ><abbr title="Día de los Muertos">November 2 2019 </abbr></time>
+
+        </p>
+    </blockquote>
+</div>
+
+
+</body>
+
+</html>
+
+
+<script>
+    const noWhitespace = document.getElementById("noWhitespace").innerHTML;
+    console.log(noWhitespace);
+    // "Dogs are silly."
+
+    const whitespace = document.getElementById("whitespace").innerHTML;
+    console.log(whitespace);
+</script>

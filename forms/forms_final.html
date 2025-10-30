@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* Basic font styles */
+
+
+        form {
+            background: url("https://mdn.github.io/shared-assets/images/examples/learn/woodland-strip.jpg") no-repeat;
+            margin-top: 20px;
+            padding-top: 50px;
+        }
+
+        body {
+            background-color: white;
+            color: #333333;
+            font: 1em / 1.4 system-ui;
+            padding: 1em;
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+        }
+
+        h1,
+        h2 {
+            margin: 0 0 20px;
+            color: purple;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        p {
+            color: gray;
+            margin: 0.5em 0;
+        }
+
+        /* Form structure */
+
+        fieldset {
+            border: 0;
+            padding: 0;
+        }
+
+        legend {
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+
+        fieldset,
+        .separator {
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: 50px;
+            margin: 20px 0;
+        }
+
+        /* Individual form items */
+
+        fieldset input {
+            margin: 0 10px 0 0;
+        }
+
+        label {
+            margin-right: 40px;
+        }
+
+        textarea {
+            margin-top: 10px;
+            padding: 5px;
+            width: 100%;
+            height: 200px;
+        }
+
+        .separator {
+            display: flex;
+        }
+
+        .separator label {
+            flex: 2;
+        }
+
+        .separator input,
+        .separator select {
+            flex: 3;
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid grey;
+            background-color: #dddddd;
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #eeeeee;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<h1>We want your feedback!</h1>
+
+<br>
+<p>We're very excited that you visited the little house in the woods,
+    and we want to hear what you thought of it! Please fill in the below
+    sections. You don't need to provide your name or contact details, but
+    if you do, we'll enter you into a prize draw where you'll have a chance
+    to win prizes.
+</p>
+
+--
+
+<h2>Facilities</h2>
+<form>
+    <div class="form-section">
+
+        <fieldset>
+            <legend>Was the porridge</legend>
+            <label for="hot"><input type="radio" name="hot" id="hot">Too hot?</label>
+            <label for="cold"><input type="radio" name="cold" id="cold">Too cold?</label>
+            <label for="right_porr"><input type="radio" name="right_porr" id="right_porr">Just right?</label>
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend>Were the beds</legend>
+            <label for="hard"><input type="radio" name="hard" id="hard">Too hard?</label>
+            <label for="soft"><input type="radio" name="soft" id="soft">Too soft?</label>
+            <label for="hard"><input type="radio" name="right" id="right">Just right?</label>
+        </fieldset>
+        <hr>
+        <fieldset>
+        <legend>Describe the chairs (select all you agree with)</legend>
+        <label for="Comfy"><input type="checkbox" name="Comfy" id="Comfy">Comfy</label>
+        <label for="tec"><input type="checkbox" name="tec" id="tec">Hi tec</label>
+        <label for="Pretty"><input type="checkbox" name="Pretty" id="Pretty">Pretty</label>
+        <label for="Majestic"><input type="checkbox" name="Majestic" id="Majestic">Majestic</label>
+        </fieldset>
+        <hr>
+
+
+        <div class="separator">
+            <h2>Abour your hosts</h2>
+            <label for="bear">Who is your fav bear?</label>
+            <select name="bear" id="bear">
+                <option value="papa">Papa bear</option>
+                <option value="mama">Mama bear</option>
+                <option value="junior">Junior</option>
+                <option value="randy">Cousin Randy</option>
+            </select>
+        </div>
+        <div class="separator">
+            <label for="greeting">Which greeting did you prefer?</label>
+            <select name="greeting" id="greeting">
+                <option value="Wave">Wave</option>
+                <option value="Friendly">Friendly greeting bear</option>
+                <option value="Claw">Claw marks in the door</option>
+            </select>
+        </div>
+        <hr>
+        <div class="flex flex-col">
+            <h2>Your Details</h2>
+
+            <label>name: <input type="text" name="name" id="name"></label>
+            <label>email: <input type="email" name="email" id="email"></label>
+            <label>Phone: <input type="tel" name="tel" id="tel"></label>
+            <button>submit</button>
+
+
+        </div>
+    </div>
+
+</form>
+
+<h2>Any Other FeedBack</h2>
+
+
+Your details
+
+Name
+Email
+Phone
+
+
+--
+</body>
+</html>
