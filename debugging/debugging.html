@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Debugging</title>
+    <!--gemini ile div için stil yaptık-->
+    <style>
+
+        div {
+            padding: 15px;              /* İç boşluk */
+            margin: 10px;               /* Dış boşluk */
+            border: 1px solid #ccc;     /* Kenarlık: kalınlık, tip, renk */
+
+            font-family: Arial, sans-serif; /* Yazı tipi */
+            color: #333;                /* Yazı rengi */
+            line-height: 1.6;           /* Satır yüksekliği */
+        }
+
+
+        .sitiled {
+            width: 300px;               /* Genişlik */
+            height: auto;               /* Yükseklik (içeriğe göre otomatik) */
+            background-color: #f0f0f0;  /* Arka plan rengi (açık gri) */
+
+            border: 2px solid #007bff;  /* Canlı mavi kenarlık */
+            border-radius: 8px;         /* Köşeleri yuvarlama */
+
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+        .merkezleyicikapsayici {
+            display: flex;
+            justify-content: center; /* Yatayda merkezleme */
+            align-items: center;     /* Dikeyde merkezleme */
+            height: 200px;           /* Kapsayıcının yüksekliği olmalı */
+            border: none;            /* Genel div stilindeki kenarlığı kaldır */
+        }
+    </style>
+</head>
+<body>
+<h1>Debugging</h1>
+<hr>
+
+    <h2>Validasyon yolları ve bilgi</h2>
+    <div class="sitiled">
+        <ul>
+            <li><p>HTML ve genel olarak web geliştirme süreçlerinde debug(hata ayıklama) işlemini gerçekleştirmek için tarayıcıların inspect(inceleme) özelliklerini ve w3'nin<a href="https://validator.w3.org/#validate_by_uri+with_options"> Markup Validation Service</a> sitesini kullanabiliriz.. </p></li>
+            <li><p>HTML render ederken eksik tagleri ve hataları toparlama yoluna gidiyor, yani web sitesinin bir kısmında sorunlu bir kod varsa bile html kendisi düzenleyebildiği kadar düzenleyip bunu render ediyor ve diğer dillerde yaygın olarak "bir hata varsa çalışmayı durdur ve render etme" gibi bir işlem gerçekleştirmiyor</p></li>
+        </ul>
+    </div>
+
+</body>
+</html>
