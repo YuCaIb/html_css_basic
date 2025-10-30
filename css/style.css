@@ -1,0 +1,64 @@
+body{
+    background: #DCC48E;
+}
+
+h1{
+    color:#ffffff;
+    /* In 4-value shorthands like padding and margin, the values are applied
+       in the order top, right, bottom, left (clockwise from the top). There are also other
+       shorthand types, for example 2-value shorthands, which set padding/margin
+       for top/bottom, then left/right */
+    padding: 10px 15px 15px 5px;  /* is equivalent to these four lines of code:
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 15px;
+padding-left: 5px;*/
+
+}
+
+text,
+p,
+ul{
+    color: whitesmoke;
+}
+
+.special{
+    color:#ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+li em{
+    color: orange;
+}
+
+h1 + p {
+    color : #C1437A;
+    font-size: 200%;
+}
+
+
+a:hover{
+    text-decoration: underline;
+    color: burlywood;
+}
+
+.outer {
+    border: 5px solid black;
+}
+
+.box {
+    padding: 10px;
+    width: calc(90% - 30px);   /* hesaplama yapılabilir.*/
+    background-color: rebeccapurple;
+    color: white;
+    transform: rotate(0.8turn);
+
+}
+
+
+div p,
+#id::first-line {
+    background-color: red;
+    border-radius: 3px;
+}
