@@ -62,3 +62,18 @@ div p,
     background-color: red;
     border-radius: 3px;
 }
+
+
+/* CSS'de class oluşturup daha sonrasında da o classa farklı bir ekleme yapabiliyoruz */
+
+.danger{
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: 4px solid #97DB9A;
+    border-radius: 20px;
+}
+
+.danger.warning{
+    border-color: orange;
+}
