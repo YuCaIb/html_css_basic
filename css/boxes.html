@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boxes in CSS</title>
+
+    <link rel="stylesheet" href="style/boxes.css">
+</head>
+<body>
+<!---
+outer display- diğer box'larla olan etkileşim.
+inner dislplay- box'ın içerisindeki etkileşimler.
+
+
+display : block şekllinde ise:
+* Kutu yeni bir satıra geçecektir.
+
+* width ve height özellikleri dikkate alınır.
+
+* padding, margin ve border, diğer öğelerin kutudan uzaklaşmasına neden olur.
+
+* width belirtilmezse, block, kapsayıcısındaki kullanılabilir alanı doldurmak için satır içi yönde genişler.
+ Çoğu durumda, block container kadar geniş olur ve kullanılabilir alanın %100'ünü doldurur.
+
+*<h1> ve <p> gibi tagler, default display türü olarak block kullanır.
+
+ display : inline ise
+* Kutu yeni bir satıra geçmez.
+
+* width, height ve üst ve alt margin'i hiçbir etkiye sahip olmayacaktır.
+
+* Üst ve alt padding ve border, çevreleyen içeriğin konumunu etkilemeden kutunun boyutunu değiştirecektir, bu da üst üste binmeye neden olabilir.
+
+* Sol ve sağ padding, margin ve border, çevreleyen satır içi içeriğin konumunu etkileyecektir.
+
+ inline kullanan bazı tagler : <a>, <span>, <em> and <strong> use inline
+
+ -->
+
+<h1>Bu ilk başlık</h1>
+
+<p>
+    Paragraf
+</p>
+<p >
+    paragraf 2 de bu paragraf. <span class="block"> bu da paragraf içinde bir span.</span>
+
+    Buda aynı paragraf içinde <span>classı,olmayan stili olmayan bir span</span>
+    <span class="inline"> bu da bir inline span hemde aynı paragraf içinde.</span>
+</p>
+<br>
+<br>
+<div class="box">
+    <h1> box sizing : border box</h1>
+</div>
+<div class="standartbox">
+    <h1>Standart box</h1>
+</div>
+
+<div class="alternative_box">
+    <h1> box sizing : border box</h1>
+</div>
+
+<!--
+Margins
+-->
+
+<div class="container">
+    <div class="cont_ins">Change my margin.</div>
+</div>
+
+<br>
+
+<div class="container">
+    <p class="one">I am paragraph one.</p>
+    <p class="two">I am paragraph two.</p>
+</div>
+
+</body>
+</html>
