@@ -89,3 +89,23 @@ p {
 .two {
     margin-top: -10px;
 }
+
+
+
+.cont_pad {
+    margin: 40px;
+    padding: 20px;
+    border-top: 20px dotted green;
+    border-right: 3px solid black;
+    border-bottom: 8px double rgb(23 45 145);
+    border-left: 8px double rgb(222 12 145);
+}
+
+.cont_pad_in {
+    padding: 20px;
+    background-color: lightgray;
+    border: 10px solid #333333;
+    border-top-style: dotted;
+    border-right-width: 12px;
+    border-bottom-color: hotpink;
+}

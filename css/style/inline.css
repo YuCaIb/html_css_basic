@@ -1,0 +1,40 @@
+body {
+    font-family: sans-serif;
+}
+p {
+    border: 2px solid rebeccapurple;
+    width: 200px;
+}
+span {
+    margin: 20px 30px;
+    padding: 20px 30px; /*sadece sağa ve sola olan padding span'ın (yani inline(satır içi tagler)) etkiler.*/
+    width: 80px; /* inline olduğu için pozisyonu etkilemez diye not düşmüşler ama width ve height zaten uzunluk ve genişlikl.......*/
+    height: 150px;
+    background-color: lightblue;
+    border: solid blue;
+    border-width: 7px 1px 12px 2px ;
+    display: inline-block;
+}
+
+ul {
+    font-family: sans-serif;
+    display: flex;
+    list-style: none;
+    border: 1px solid black;
+}
+
+li {
+    margin: 5px;
+}
+
+.links-list a {
+    background-color: rgb(179 57 81);
+    color: white;
+    text-decoration: none;
+    padding: 1em 2em;
+}
+
+.links-list a:hover {
+    background-color: rgb(66 28 40);
+    color: white;
+}

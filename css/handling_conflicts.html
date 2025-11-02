@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style/handlinig_conflicts.css">
+</head>
+<body>
+<h1>This is my heading.</h1>
+
+<br>
+<hr>
+<h1 class="main-heading">This is my heading.</h1>
+
+<br>
+<hr>
+
+<p>
+    As the body has been set to have a color of blue this is inherited through the
+    descendants.
+</p>
+<p>
+    We can change the color by specifically targeting an element with a different
+    style, such as this
+    <span>span</span>.
+</p>
+<br>
+<hr>
+<p> INFO : Some properties do not inherit — for example width If you set a width of 50% on an element, all of its descendants do not get a width of 50% of their parent's width. If this was the case, CSS would be very frustrating to use!
+</p>
+<br>
+<hr>
+<ul class="main">
+    <li>Item One</li>
+    <li>
+        Item Two
+        <ul>
+            <li>2.1</li>
+            <li>2.2</li>
+        </ul>
+    </li>
+    <li>
+        Item Three
+        <ul class="special">
+            <li>
+                3.1
+                <ul>
+                    <li>3.1.1</li>
+                    <li>3.1.2</li>
+                </ul>
+            </li>
+            <li>3.2</li>
+        </ul>
+    </li>
+</ul>
+
+<br>
+<hr>
+<p>INFO : Properties like width (as mentioned earlier), margin, padding, and border are not inherited properties</p>
+<br>
+<hr>
+<ul>
+    <li>Default <a href="#">link</a> color</li>
+    <li class="my-class-1">Inherit the <a href="#">link</a> color</li>
+    <li class="my-class-2">Reset the <a href="#">link</a> color</li>
+    <li class="my-class-3">Unset the <a href="#">link</a> color</li>
+</ul>
+
+<blockquote>
+    <p>This blockquote is styled</p>
+</blockquote>
+
+<blockquote class="fix-this">
+    <p>This blockquote is not styled</p>
+</blockquote>
+
+<br>
+<hr>
+
+<h2>Heading with no class</h2>
+<h2 class="small">Heading with class of small</h2>
+<h2 class="bright">Heading with class of bright</h2>
+
+<br>
+<hr>
+
+<h2>Specificity</h2>
+<p></p>
+<br>
+<div class="container" id="outer">
+    <div class="container" id="inner">
+        <ul>
+            <li class="nav"><a href="#">One</a></li>
+            <li class="nav"><a href="#">Two</a></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+h1 {
+    color: red;
+}
+
+h1 {
+    color: blue;
+}
+
+/* When two rules both have equal specificity, the one that is defined last in the stylesheet is the one that will be used*/
+
+.main-heading {
+    color: red;
+}
+
+body {
+    color: green;
+}
+
+.my-class-1 a {
+    color: inherit;
+}
+
+.my-class-2 a {
+    color: initial;
+}
+
+.my-class-3 a {
+    color: unset;
+}
+
+span{
+    color: black;
+}
+
+.main{
+    color: rebeccapurple;
+    border: 2px solid #cccccc;
+    padding: 1em;
+}
+
+.special{
+    color: black;
+    font-weight: bold;
+}
+
+blockquote {
+    background-color: orange;
+    border: 2px solid blue;
+}
+
+.fix-this {
+    all: unset;
+}
+
+/* spesifikleştirirsek blockquote'un içerisindeki child'ı unset edilmemiş gibi davrandırabiliyoruz.*/
+blockquote p {
+    background-color: orange;
+    border: 2px solid blue;
+}
+
+
+h2 {
+    font-size: 2em;
+    color: black;
+    font-family: "Georgia", serif;
+}
+
+.small {
+    font-size: 1em;
+}
+
+.bright {
+    color: rebeccapurple;
+}

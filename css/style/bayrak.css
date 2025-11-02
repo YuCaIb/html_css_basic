@@ -1,0 +1,82 @@
+.red-circle{
+    border-radius: 100%;
+    background-color: red;
+    width: 100px;
+    height: 100px;
+
+    margin: 40px auto 40px auto;
+}
+
+.turk-arka-plan{
+    width: 1150px;
+    height: 700px;
+    background-color: red;
+    margin: 0 auto;
+}
+
+.hilal{
+    height: 420px;
+    width: 420px;
+    border-radius: 50%;
+    position: relative;
+    left: 150px;
+    top: 144px;
+    background-color: white;
+}
+
+.hilal::before{
+    position: absolute;
+    left: 100px;
+    top: 40px;
+    display: block;
+    height: 0;
+    width: 0;
+    content: '';
+    border-radius: 50%;
+    border: 165px solid red;
+}
+
+
+.yildiz {
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: white;
+    width: 0;
+    height: 0;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid white;
+    border-left: 100px solid transparent;
+    transform: rotate(16deg);
+    left: 550px;
+    bottom: 174px;
+}
+
+.yildiz::before {
+    border-bottom: 80px solid white;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -45px;
+    left: -65px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+}
+
+.yildiz::after {
+    position: absolute;
+    display: block;
+    color: white;
+    top: 3px;
+    left: -105px;
+    width: 0;
+    height: 0;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid white;
+    border-left: 100px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+}
