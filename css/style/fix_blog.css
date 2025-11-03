@@ -1,0 +1,91 @@
+/* Basic type and text */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+
+body {
+    font: 1.2em / 1.5 system-ui;
+    width: clamp(480px, 70%, 1000px);
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Nav menu */
+nav ul li a{
+    text-decoration: none;
+    color: black;
+    background-color: yellowgreen;
+    text-align: center;
+    padding: 10px;
+    display: block;
+    margin: -5px;
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    background-color: #C1437A;
+}
+
+nav ul {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+nav li {
+    flex: 1;
+}
+
+
+a:hover {
+    background-color: goldenrod;
+}
+
+a:focus {
+    background-color: goldenrod;
+}
+
+/* Intro and summary */
+
+.highlight {
+    margin-top: 0;
+    background-color: darkslategrey;
+    color: cornsilk;
+}
+
+.highlight a {
+    color: purple;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 20px;
+    background-color: goldenrod;
+    text-shadow: 1px 1px 1px black;
+}
