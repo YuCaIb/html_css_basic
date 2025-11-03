@@ -9,6 +9,9 @@ html {
     box-sizing: inherit;
 }
 
+section:not(.highlight) h2 + p:first-line {
+    font-weight: bold;
+}
 
 
 body {
@@ -30,24 +33,22 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+a:hover , a:focus {
     text-decoration: none;
 }
 
 /* Nav menu */
-nav ul li a{
+nav ul li a {
     text-decoration: none;
     color: black;
     background-color: yellowgreen;
     text-align: center;
     padding: 10px;
     display: block;
-    margin: -5px;
+    /*margin: -5px;*/
 }
 
-nav ul li a:hover, nav ul li a:focus {
-    background-color: #C1437A;
-}
+
 
 nav ul {
     display: flex;
@@ -61,21 +62,32 @@ nav li {
     flex: 1;
 }
 
+nav a {
+    text-decoration: none;
+    color: black;
+    background-color: yellowgreen;
+    display: block;
+    text-align: center;
+    padding: 10px;
+}
 
-a:hover {
+
+nav a:hover , nav a:focus  {
     background-color: goldenrod;
 }
 
-a:focus {
-    background-color: goldenrod;
-}
 
 /* Intro and summary */
 
 .highlight {
+    padding: 20px 20px 20px 20px;
     margin-top: 0;
     background-color: darkslategrey;
     color: cornsilk;
+}
+
+.highlight a {
+    color: yellow !important;
 }
 
 .highlight a {
@@ -84,7 +96,8 @@ a:focus {
 
 /* Footer */
 
-footer {
+footer.highlight {
+    padding: 20px 20px 20px 20px;
     margin-top: 20px;
     background-color: goldenrod;
     text-shadow: 1px 1px 1px black;
