@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/css_values_units.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="box px">I am 200px wide</div>
+    <div class="box vw">I am 10vw wide</div>
+    <div class="box em">I am 10em wide</div>
+</div>
+
+
+<br>
+<hr>
+
+<ul class="ems">
+    <li>One</li>
+    <li>Two</li>
+    <li>
+        Three
+        <ul>
+            <li>Three A</li>
+            <li>
+                Three B
+                <ul>
+                    <li>Three B 2</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<ul class="rems">
+    <li>One</li>
+    <li>Two</li>
+    <li>
+        Three
+        <ul>
+            <li>Three A</li>
+            <li>
+                Three B
+                <ul>
+                    <li>Three B 2</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<br>
+<hr>
+
+<div class="box px">I am 200px wide</div>
+<div class="box percent">I am 40% wide</div>
+<div class="wrapper">
+    <div class="box px">I am 200px wide</div>
+    <div class="box percent">I am 40% wide</div>
+</div>
+<hr>
+<span>INFO : if you set an element's font-size as a percentage, it will be a percentage of the font-size of the element's parent. </span>
+<hr>
+<div>The next example has font sizes set in percentages. Each li has a font-size of 80%; <br>
+    therefore, the nested list items become progressively smaller as they inherit their sizing from their parent.
+</div>
+<ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>
+        Three
+        <ul>
+            <li>Three A</li>
+            <li>
+                Three B
+                <ul>
+                    <li>Three B 2</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<hr>
+<br>
+<div class="wrapped">
+    <div class="box_opacity">I am a box with opacity</div>
+</div>
+
+<hr>
+<br>
+
+<div class="wrapper">
+    <div class="box one">antiquewhite</div>
+    <div class="box two">blueviolet</div>
+    <div class="box three">greenyellow</div>
+</div>
+<hr>
+
+<p>more colors</p>
+<div>
+    <div class="box van">#02798b</div>
+    <div class="box tu">#c55da1</div>
+    <div class="box tri">#128a7d</div>
+</div>
+
+
+<hr>
+<br>
+<p>rgb ilede color verebiliriz ve aynı anda opacity ayarlanabilir. <br>
+    Not :
+    Bu şekilde opacity ayarlanırsa (alfa değeri ile ayarlanırsa)
+    <br>
+    sadece rengin opaklığını ayarlıyor oluruz. Normal opacity ayarında <br>
+    parent elemanın içindeki her şeyin opaklığını değiştiriyor oluyoruz.</p>
+<div class="wrapped">
+    <div class="box one_opac">rgb(2 121 139 / .3)</div>
+    <div class="box two_opac">rgb(197 93 161 / .7)</div>
+    <div class="box three_opac">rgb(18 138 125 / .9)</div>
+</div>
+
+
+<hr>
+<br>
+
+<div class="box_norepeat"></div>
+<br>
+<hr>
+
+<div class="wrapper_size">
+    <div class="box_size">My width is calculated.</div>
+</div>
+</body>
+</html>

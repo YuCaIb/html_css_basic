@@ -1,0 +1,58 @@
+/*test 1*/
+
+body{
+    font: 1.2em / 1.5 sans-serif;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    margin: 1em;
+    padding: 0.5em;
+}
+
+
+
+.hex {
+background-color: #86defa ;
+}
+.rgb{
+background-color: rgb(255, 99, 99);
+}
+.hsl{
+    background-color: rgb(255, 99, 99);
+}
+.transparency{
+    background-color: rgb(255 99 99 / 0.6);
+}
+
+/*test 2 */
+
+h1{
+    font-size: 50px;
+}
+h2{
+    font-size: 2em;
+}
+p{
+    font-size: 16px;
+}
+h1 + p{
+    font-size: 120%;
+}
+/* Test 3*/
+
+.box {
+    border: 5px solid black;
+    height: 350px;
+    background-image: url("https://mdn.github.io/shared-assets/images/examples/purple-star.png");
+    background-repeat: no-repeat;
+    background-position: center 20%;
+
+}
+
+

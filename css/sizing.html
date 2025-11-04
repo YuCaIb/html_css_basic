@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sizing</title>
+    <link rel="stylesheet" href="style/sizing.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="box"></div>
+    <div class="box">
+        These boxes both have a height set, this box has content in it which will
+        need more space than the assigned height, and so we get overflow.
+    </div>
+</div>
+<br>
+
+<p>Due to this problem of overflow, fixing the height of elements with lengths or percentages is something we need to do very carefully on the web.</p>
+
+<br>
+<hr>
+
+<div class="container">
+    <div class="box_perc">I have a percentage width.</div>
+</div>
+
+<br>
+<hr>
+
+<div class="box_pad_mar"> box padding margin</div>
+
+<br>
+<hr>
+
+<div class="wrapper">
+    <div class="box"></div>
+    <div class="box">
+        These boxes both have a min-height set, this box has content in it which
+        will need more space than the assigned height, and so it grows from the
+        minimum.
+    </div>
+</div>
+
+<br>
+<hr>
+
+<div class="wrapper">
+    <div class="box">
+        <img
+                alt="star"
+                class="width"
+                src="https://mdn.github.io/shared-assets/images/examples/big-star.png" />
+    </div>
+    <div class="box">
+        <img
+                alt="star"
+                class="max"
+                src="https://mdn.github.io/shared-assets/images/examples/big-star.png" />
+    </div>
+    <div class="mini-box">
+        <img
+                alt="star"
+                class="max"
+                src="https://mdn.github.io/shared-assets/images/examples/big-star.png" />
+    </div>
+</div>
+
+
+
+</body>
+</html>
