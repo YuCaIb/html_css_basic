@@ -46,3 +46,9 @@ body {
     width: 60%;
     padding: 10%;
 }
+
+/*Task 3*/
+img {
+    /* Add styles here */
+    max-width: 100%;
+}
