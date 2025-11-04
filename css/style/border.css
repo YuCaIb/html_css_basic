@@ -1,0 +1,76 @@
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
+    color: darkred;
+}
+* {
+    box-sizing: border-box;
+}
+
+/*h2{
+    border-top: 2px dotted #007bff;
+    border-bottom: 1em double rgb(45, 180 ,190);
+}*/
+.box {
+    width: 500px;
+    background-color: #567658;
+    border: 5px solid black;
+    color: white;
+    border-bottom: dashed;
+    border-radius: 10px;
+
+}
+
+
+body {
+    padding: 1em;
+    font: 1.2em / 1.5 sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.box_t1 {
+    /* Add styles here */
+    padding: 0.5em;
+
+    border: 5px solid black;
+    border-radius: 10px;
+    background-image: url("https://mdn.github.io/shared-assets/images/examples/balloons.jpg");
+}
+
+h2 {
+    background-color: rgb(0 0 0 / 0.5);
+    color: white;
+}
+
+/*Test 2*/
+
+.box_t2 {
+    width: 300px;
+    padding: 0.5em;
+}
+
+.box_t2 {
+    /* Add styles here */
+    border : 5px lightblue solid;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 40px;
+
+}
+
+h2{
+    /* Add styles here */
+    color: red;
+    padding: 0 40px;
+    text-align: center;
+    background: url("https://mdn.github.io/shared-assets/images/examples/star.png") no-repeat left center,
+    url("https://mdn.github.io/shared-assets/images/examples/star.png") repeat-y right center;
+}
+
+
+
+
