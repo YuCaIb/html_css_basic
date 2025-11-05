@@ -1,0 +1,13 @@
+.box {
+    border: 5px solid black;
+    width: 600px;
+    height: 400px;
+    overflow: auto;
+}
+
+img {
+    /* Add styles here */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
