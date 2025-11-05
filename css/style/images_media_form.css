@@ -1,0 +1,47 @@
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.wrapper > * {
+    margin: 20px;
+}
+
+.box {
+    border: 5px solid darkblue;
+    width: 200px;
+}
+.box_2 {
+    border: 5px solid darkblue;
+    width: 200px;
+    height: 200px;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
+
+.cover{
+    object-fit: cover;
+}
+
+.contain{
+    object-fit: contain;
+}
+
+
+.wrapper_2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    gap: 20px;
+}
+
+.wrapper_2 > div {
+    background-color: darkblue;
+    border-radius: 0.5em;
+}
+.wrapper_2 img{
+    all: unset;
+}
