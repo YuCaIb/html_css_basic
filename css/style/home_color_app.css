@@ -129,3 +129,9 @@ caption{
     letter-spacing: 1px;
     caption-side: bottom;
 }
+
+
+img{
+    width: 100%;
+    object-fit: cover;
+}
