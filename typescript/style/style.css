@@ -1,0 +1,70 @@
+body{
+    background-color: darkslategray;
+}
+
+pre{
+    width: auto;
+    display: block;
+    background-color: #f6f6f6;
+    box-sizing: border-box;
+    font-family: Consolas, 'Courier New', Courier, monospace;
+    font-weight: bold;
+
+    padding: 16px;
+    margin: auto auto 10px auto;
+    height: 10vw;
+    overflow: auto;
+}
+
+pre::before{
+    content: "TypeScript Code Block";
+    font-weight: bolder;
+    position: relative;
+}
+
+
+output{
+    display: block;
+    box-sizing: border-box;
+    background-color: #2d3748;
+    color: ghostwhite;
+    font-family: "Cinzel Decorative", cursive;
+    white-space: pre;
+
+    padding: 16px;
+    margin: auto auto 10px auto;
+    height: 10vw;
+    overflow: auto;
+}
+
+
+output::before{
+    content: "TypeScript Output Block";
+    position: relative;
+    left: 5px;
+    font-weight: bolder;
+    color: ghostwhite;
+}
+
+hr{
+    border: 10px double #e98455 ;
+}
+
+h1{
+    text-align: left;
+    padding: 10px;
+    margin: auto auto auto 16px;
+    font-size: 160%;
+    color: ghostwhite;
+}
+
+
+
+.explain{
+    box-sizing: border-box;
+    display: block;
+    background-color: ghostwhite;
+    font-weight: bold;
+    white-space: inherit;
+}
+

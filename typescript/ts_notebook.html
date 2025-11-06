@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<h1>Yükleme</h1>
+<div class="explain">
+    <p>"npm install --global typescript" komutu ile yükleniyor.</p>
+    <p>"tsc -v" ile versiyon kontrolü. npm init -y ile iligli dizinde package.json oluşturuluyor.</p>
+    <p>"npx tsc whatevernameis.ts" komutu ile ts dosyasını js dosyasına çeviriyoruz.</p>
+</div>
+
+
+<hr>
+
+<h1>Hello World</h1>
+
+<div class="explain">
+    <p>TS dünyasına ilk kodum (buraya açıklamalar gelicek)</p>
+</div>
+)
+
+<pre><code>
+function selamDunya() {
+  console.log("Merhaba Dünya!");
+}
+</code>
+</pre>
+<output>
+    Merhaba Dünya
+</output>
+<hr>
+<h1>5 Temel Tip</h1>
+<div class="explain">
+    <p> boolean, number, string, Bigint(2^53 - 1 sayısından büyük), Symbol</p>
+</div>
+<pre>
+    <code>
+        //Boolean
+        let isactive: boolean = false;
+        let hasError = true;  //Python gibi kendisi de çıkarım yapabiliyor.
+
+        //number
+        let decimal: number = 25;
+        let hex: number = 0xf00d;
+        let binary: number = 0b1010;
+        let octal: number = 0o744;
+        let float: number = 3.14;
+
+        //String
+        let name: string = "Yusuf Can"
+        let surname: string = "İbişoğlu"
+
+let sentence: string = "Hello my name is " + name + " " + surname + " and I'm " + decimal + " Years old.";
+
+console.log(sentence)
+    </code>
+</pre>
+
+<output>
+    Hello my name is Yusuf Can İbişoğlu and I'm 25 Years old.
+</output>
+
+<div class="explain">
+<p>Symbol unique tanımlayıcılar oluşturur. Unique özellik key ve constant oluşturmak için kullanışlıdır.</p>
+</div>
+<pre><code>
+    const uniqueKey: symbol = Symbol('description');
+const obj = {
+    [uniqueKey]: 'This is a unique property'
+};
+console.log(obj[uniqueKey]); // "This is a unique property"
+</code></pre>
+<output>
+    This is a unique property
+</output>
+
+<hr>
+<h1>Inference - Çıkarım</h1>
+<div class="explain"><p>//return tipini de belirleyebiliyoruz. Belirlemessek çıkarım (inferrence) yapıyor.</p></div>
+<pre>
+    <code>
+        function ornek(name: string): string {
+    return `Hello, ${name}!`;}
+    </code>
+</pre>
+
+<pre><code>const user = {
+    name: 'yusuf',
+    surname: "ibisoglu",
+    isadmin: false,
+    age: 25
+}
+
+    console.log(user.name);
+</code></pre>
+
+<output>
+    yusuf
+    undefined
+</output>
+<hr>
+<div class="explain"><p>/*
+    TypeScript inference özelliği oldukça güçlü. Ancak tipi tanımlayamadığı durumlar olabiliyor.
+    mesela intellisense aşşağıda data değişkenini any olarak atadı. yazzdırdığımda ise object
+    </p></div>
+
+<pre><code>
+    const data = JSON.parse('{"name":"yusuf","surname":"ibisoglu","isadmin":true}');
+    console.log(typeof data);
+</code></pre>
+
+<output>
+    object
+</output>
+<h1>any</h1>
+<div class="explain"><p>any js kodumuzu ts'ye migrate(taşırken) ederken kullanabiliriz.</p>
+<p>dinamik content ile çalışırken, tip unkown ise kullanılabilir</p>
+</div>
+<hr>
+
+<div class="explain">
+    <p>unknown any'nin güvenli versiyonu, property'leri çapıramassın</p>
+    <p>kullanmadan önce kontrol etmemiz gerekiyor (assert) çağıramayız ve construct edemeyiz.</p>
+</div>
+<pre><code>
+    let w: unknown = 1;
+
+w = "string";
+
+w = {
+    runANonExistentMethod: () => {
+        console.log("I think");
+    }
+} as { runANonExistentMethod: () => void }
+
+console.log(w)
+</code></pre>
+
+<output>
+
+</output>
+
+
+</body>
+</html>
