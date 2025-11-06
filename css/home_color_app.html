@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Color App</title>
+    <link rel="stylesheet" href="style/home_color_app.css">
+</head>
+<body>
+<section>
+    <h1>Home color search</h1>
+    <form>
+        <div>
+            <label for="color">Color to search for:</label>
+            <input type="text" id="color" name="color" value="pink" />
+        </div>
+        <div>
+            <label for="results-per-page">Results per page:</label>
+            <input
+                    type="text"
+                    id="results-per-page"
+                    name="results-per-page"
+                    value="4" />
+        </div>
+        <div>
+            <button type="button">Submit</button>
+        </div>
+    </form>
+</section>
+<hr />
+<section>
+    <h2>Search results</h2>
+    <table>
+        <caption>
+            Sample colors and color schemes
+        </caption>
+        <thead>
+        <tr>
+            <th scope="col">Color</th>
+            <th scope="col">Raw color</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Sample color scheme</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Pink</td>
+            <td><code>rgb(255 192 203)</code></td>
+            <td>pink, pale, light</td>
+            <td>
+                <img
+                        src="https://mdn.github.io/shared-assets/images/examples/learn/home-color-schemes/living-room-pink.png"
+                        alt="Image of living room in a pink color scheme" />
+            </td>
+        </tr>
+        <tr>
+            <td>Baker-Miller pink</td>
+            <td><code>rgb(255 145 175)</code></td>
+            <td>pink, pale, bright</td>
+            <td>
+                <img
+                        src="https://mdn.github.io/shared-assets/images/examples/learn/home-color-schemes/living-room-baker-miller-pink.png"
+                        alt="Image of living room in a Baker-Miller pink color scheme" />
+            </td>
+        </tr>
+        <tr>
+            <td>Hotpink</td>
+            <td><code>rgb(255 105 180)</code></td>
+            <td>pink, bright, vivid</td>
+            <td>
+                <img
+                        src="https://mdn.github.io/shared-assets/images/examples/learn/home-color-schemes/living-room-hotpink.png"
+                        alt="Image of living room in a hotpink color scheme" />
+            </td>
+        </tr>
+        <tr>
+            <td>Fuchsia</td>
+            <td><code>rgb(255 0 255)</code></td>
+            <td>pink, medium, bright</td>
+            <td>
+                <img
+                        src="https://mdn.github.io/shared-assets/images/examples/learn/home-color-schemes/living-room-fuchsia.png"
+                        alt="Image of living room in a fuchsia color scheme" />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="controls">
+        <button disabled>Previous</button>
+        <p>Showing page 1 of 20</p>
+        <button>Next</button>
+    </div>
+</section>
+</body>
+</html>
