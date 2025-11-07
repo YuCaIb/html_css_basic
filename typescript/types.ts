@@ -169,7 +169,7 @@ interface Rectangle {
     height: number,
     width: number
     sides: number[]
-};
+}
 
 const rectangle: Rectangle = {
     height: 20,
@@ -188,3 +188,17 @@ const pen: Tool = { name: "Pen", year: 12 };
 
 console.log(typeof pen);
 console.log(pen)
+
+//Union
+function printStatusCode(code: string | number) {
+    console.log(`My status code is ${code}.`)
+}
+printStatusCode(404);
+printStatusCode('404');
+
+/*
+function printStatusCode(code: string | number) {
+    console.log(`My status code is ${code.toUpperCase()}.`) // error: Property 'toUpperCase' does not exist on type 'string | number'. Property 'toUpperCase' does not exist on type 'number'
+}*/
+
+//Functions

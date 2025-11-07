@@ -68,3 +68,8 @@ h1{
     white-space: inherit;
 }
 
+.explain::before{
+    content: "Clarification";
+    font-weight: bolder;
+    position: relative;
+}

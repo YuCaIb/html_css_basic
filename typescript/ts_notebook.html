@@ -420,32 +420,108 @@ console.log(pen)
     object
     { name: 'Pen', year: 12 }
 </output>
+
+<h1>Type vs Interface: Key Differences</h1>
+<div class="explain"><p>İkiside extend edilebiliyor, ayrıca Interfaces merge edilebiliyor.</p>
+<p>Sadece type aliases intersection/unions kesişimlerini destekliyor.</p>
+<p>Sınıflar ikisine de uygulanabiliyor.</p>
+<p>Objeler için Interface, geriye kalan her şey için Type kullanmamız öneriliyor.</p>
+
+<h2>İyi tavsiyeler</h2>
+<p>obje ve public API lar tanımlarken Interface kullan</p>
+<p>Union, intersection ve primitivler için Type kullan</p>
+<p>Type ve Interface tanımlarını dökümente et.</p></div>
 <hr>
-<h1></h1>
-<div class="explain"><p></p></div>
+<h1>Union Types</h1>
+<div class="explain">
+    <p>tanımlama yaparken "|" kullanmak, mantıktaki OR kullanımına benzer.</p></div>
 
 <pre><code>
-
+function printStatusCode(code: string | number) {
+  console.log(`My status code is ${code}.`)
+}
+printStatusCode(404);
+printStatusCode('404');
 </code></pre>
 
-<output></output>
+<output>
+    My status code is 404.
+    My status code is 404.
+</output>
 
-<hr>
-<h1></h1>
-<div class="explain"><p></p></div>
+<div class="explain">
+    <p>Tür hatalarından kaçınmak için, birleşim türlerinin ne olduğunu bilmek gerekir.</p>
+</div>
 
 <pre><code>
-
+    function printStatusCode(code: string | number) {
+  console.log(`My status code is ${code.toUpperCase()}.`) // error: Property 'toUpperCase' does not exist on type 'string | number'. Property 'toUpperCase' does not exist on type 'number'
+}
 </code></pre>
 
-<output></output>
+<output>
 
+    C:\Users\ycanf\Desktop\web-learn\html\typescript\types.ts:200
+    console.log(`My status code is ${code.toUpperCase()}.`) // error: Property 'toUpperCase' does not exist on type 'string | number'. Property 'toUpperCase' does not exist on type 'number'
+    ^
+
+
+    TypeError: code.toUpperCase is not a function
+    at printStatusCode (C:\Users\ycanf\Desktop\web-learn\html\typescript\types.ts:200:43)
+    at CardinalDirections (C:\Users\ycanf\Desktop\web-learn\html\typescript\types.ts:196:1)
+    at Object.anonymous (C:\Users\ycanf\Desktop\web-learn\html\typescript\types.ts:199:10)
+    at Module._compile (node:internal/modules/cjs/loader:1554:14)
+    at Object.transformer (C:\Program Files\JetBrains\WebStorm 2025.2.4\plugins\nodeJS\js\ts-file-loader\node_modules\tsx\dist\register-DfubRCxM.cjs:2:823)
+    at Module.load (node:internal/modules/cjs/loader:1289:32)
+    at Function._load (node:internal/modules/cjs/loader:1108:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+    at cjsLoader (node:internal/modules/esm/translators:262:5)
+
+</output>
 <hr>
-<h1></h1>
-<div class="explain"><p></p></div>
+<h1>Functions</h1>
+<div class="explain">
+    <p>Typescript'te fonskyionların parametreleri ve döndüreceği değerlerin tiplerini belirlemek için özel bir syntax vardır.</p>
+    <p>Type Alias ile de fonkisyon yazılabiliyor. Bunu Burak abiye sor</p>
+</div>
 
 <pre><code>
+    //return değerinin type belirlenmesi :
+    function getTime(): number {
+  return new Date().getTime();
+}
+    function printHello(): void {
+  console.log('Hello!');
+}
+    // parametrelerin tipinin belirlenmesi
+    function multiply(a: number, b: number) {
+  return a * b;
+}
+    //Opsiyonel paramtereler '?' ile gösterilir.
+    // the `?` operator here marks parameter `c` as optional
+function add(a: number, b: number, c?: number) {
+  return a + b + (c || 0);
+}
+    //Deafult parametreler
+    function pow(value: number, exponent: number = 10) {
+  return value ** exponent;
+}
+    //Named Parameters
+function divide({ dividend, divisor }: { dividend: number, divisor: number }) {
+  return dividend / divisor;
+}
 
+    Rest Parameters
+function add(a: number, b: number, ...rest: number[]) {
+  return a + b + rest.reduce((p, c) => p + c, 0);
+}
+
+    //Type alias ile fonksiyon :
+    type Negate = (value: number) => number;
+
+// in this function, the parameter `value` automatically gets assigned the type `number` from the type `Negate`
+const negateFunction: Negate = (value) => value * -1;
 </code></pre>
 
 <output></output>
