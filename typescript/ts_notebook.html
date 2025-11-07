@@ -121,8 +121,16 @@ console.log(obj[uniqueKey]); // "This is a unique property"
 <div class="explain"><p>any js kodumuzu ts'ye migrate(taşırken) ederken kullanabiliriz.</p>
 <p>dinamik content ile çalışırken, tip unkown ise kullanılabilir</p>
 </div>
-<hr>
+<pre><code>
+    let v: any = true;
+v = "string"; // no error as it can be "any" type
+Math.round(v); // no error as it can be "any" type
+console.log(v); // "string"
+    //genelde any error dönmez
+</code></pre>
 
+<hr>
+<h1>Unknown</h1>
 <div class="explain">
     <p>unknown any'nin güvenli versiyonu, property'leri çapıramassın</p>
     <p>kullanmadan önce kontrol etmemiz gerekiyor (assert) çağıramayız ve construct edemeyiz.</p>
@@ -138,13 +146,321 @@ w = {
     }
 } as { runANonExistentMethod: () => void }
 
-console.log(w)
+    console.log(w)
+    if (typeof w === 'object' && w !== null) {
+    (w as { runANonExistentMethod: Function }).runANonExistentMethod();
+}
 </code></pre>
 
 <output>
-
+    object
+    { runANonExistentMethod: [Function: runANonExistentMethod] }
+    I think
 </output>
 
+
+<hr>
+<h1>Unkown ne zaman kullanılır.</h1>
+<div class="explain"><p>// Dışardan veri aldığımızda (API vs) veri tiplerinden emin olmamız gerektiğinde.
+</p>
+<p>// java scriptten Type Scripte güvenli bir geçiş yaptığımızda (kodları js den ts e çevirirken.)
+</p></div>
+<pre><code>
+    // Unkown ne zaman kullanılır
+    function processValue(value: unknown) {
+    if (typeof value === 'string') {
+    // value is now treated as string
+    console.log(value.toUpperCase());
+    } else if (Array.isArray(value)) {
+    // value is now treated as any[]
+    console.log(value.length);
+    }
+    }
+    let absc: number[] = [2, 3];
+    processValue(absc)
+</code></pre>
+
+<output>
+    2
+</output>
+<hr>
+<h1>Never type</h1>
+<div class="explain"><p>// Hiç bir zaman meydana gelmeyecek / gelmemesi gereken değerleri temsil eder.
+</p>
+<p>Basic never type (throws error when assigned)
+</p></div>
+<pre>
+    <code> //never return eden fonksyion
+        function throwError(message: string): never {
+    throw new Error(message);
+}
+        --------
+        type Shape = Circle | Square | Triangle;
+
+function getArea(shape: Shape): number {
+    switch (shape.kind) {
+        case 'circle':
+            return Math.PI * shape.radius ** 2;
+        case 'square':
+            return shape.sideLength ** 2;
+        default:
+            // TypeScript knows this should never happen
+            const _exhaustiveCheck: never = shape;
+            return _exhaustiveCheck;
+    }
+}
+        //Basic never type (throws error when assigned)
+        let x: never = true; // Error: Type 'boolean' is not assignable to type 'never'.
+    </code>
+</pre>
+<hr>
+<h1>Type: undefined & null</h1>
+<div class="explain"><p>Typescriptte undefined ve null birer tiptir, string veya number gibi.</p>
+<p>bu tipler varsayılan olarak, herhangi bir tipe dönüştürülebilir.</p></div>
+<pre><code>
+    let y: undefined = undefined;
+    let z: null = null;
+    // Opsiyonel parametre ve property özellikleri  :
+    // Optional parameter (implicitly `string | undefined`)
+function greet(name?: string) {
+  return `Hello, ${name || 'stranger'}`;
+}
+
+// Optional property in an interface
+interface User {
+  name: string;
+  age?: number; // Same as `number | undefined` }
+// Nullish Coalescing and Optional Chaining
+
+    // Nullish coalescing (??) - only uses default if value is null or undefined
+const value = input ?? 'default';
+
+// Optional chaining (?.) - safely access nested properties
+const street = user?.address?.street;
+</code></pre>
+
+<hr>
+<h1>Arrays</h1>
+<div class="explain"><p>readonly anahtar sözcüğü dizilerin değiştirilmesini önleyebilir.</p>
+<p>TypeScript, bir Arrayın elamanlarından türü çıkarımlayabilir.</p></div>
+    <pre><code>
+        const names: readonly string[] = ["Dylan"];
+names.push("Jack"); // Error: Property 'push' does not exist on type 'readonly string[]'.
+// try removing the readonly modifier and see if it works?
+
+        const numbers = [1, 2, 3]; // inferred to type number[]
+numbers.push(4); // no error
+// comment line below out to see the successful assignment
+numbers.push("2"); // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
+let head: number = numbers[0]; // no error
+        //alttaki kod hata verecek.
+    numbers.push("2"); // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
+
+
+        console.log(numbers);
+    </code></pre>
+<output>
+    NOTT: beklediğim gibi hata vermedi. Aksine oldu.
+    [ 1, 2, 3, 4, '2' ]
+</output>
+<hr>
+<h1>Tuple/Typed Arrays</h1>
+<div class="explain"><p>Bir tuple, önceden tanımlanmış bir uzunluğa ve her indeks için türlere sahip türlendirilmiş bir dizidir. sıralama önemlidir.</p>
+<p>Tuple'lar harikadır çünkü dizideki her bir elemanın bilinen bir değer türünde olmasına izin verirler.
+</p></div>
+
+<pre><code>
+    // define our tuple
+let ourTuple: [number, boolean, string];
+
+    // initialize correctly
+    ourTuple = [5, false, 'Coding'];
+    //mesela ourTuple'ın ilk 3 (0 1 2) elemanının tipi belirlenmiş,
+    //geri kalanına ne insert edersen et. kabul edecek ama tanımlanmış yerlere uygun tip gelmeli. Yoksa error verir.
+</code></pre>
+
+<pre><code>
+    const car: { type: string, mileage: number } = { // Error: Property 'mileage' is missing in type '{ type: string; }' but required in type '{ type: string; mileage: number; }'.
+  type: "Toyota",
+};
+car.mileage = 2000;
+</code></pre>
+
+<h1>Index signature</h1>
+<div class="explain">
+    <p>tanımlanmış bir property listesi olmayan nesneler için kullanılabilir</p>
+</div>
+<pre><code>
+    const nameAgeMap: {[index: string]: number} = {};
+nameAgeMap.Jack = 2000;
+nameAgeMap.Mark = "Fifty"; // Error: Type 'string' is not assignable to type 'number'.
+
+    console.log(nameAgeMap);
+</code></pre>
+
+<output>
+Yinede output veriyor...
+    { Jack: 2000, Mark: 'Fifty' }
+</output>
+<hr>
+<h1>Enum's</h1>
+<div class="explain"> <p>Enum sabit bir değişkendir.</p>
+<p>Enum tanımlandığında default olarak 0 dan başlatır, kendimiz tanımlarsak değişkenlik gösterebilir.</p>
+<p>Daha çok string enumlar kullanılıyor.</p></div>
+<pre><code>
+    enum StatusCodes {
+    NotFound = 404,
+    Success = 200,
+    Accepted = 202,
+    BadRequest = 400
+}
+// logs 404
+console.log(StatusCodes.NotFound);
+// logs 200
+console.log(StatusCodes.Success);
+
+
+enum CardinalDirections {
+    North = 'North',
+    East = "East",
+    South = "South",
+    West = "West"
+}
+// logs "North"
+console.log(CardinalDirections.North);
+// logs "West"
+console.log(CardinalDirections.West);
+</code></pre>
+
+<output>
+    404
+    200
+    North
+    West
+</output>
+<hr>
+<h1>Type Aliases</h1>
+
+<div class="explain"> <p>Type aliases'ı kendimizce tip oluşturmamıza olanak tanıyor.</p>
+<p>temel tipler(string, numbers vs) veya daha komplex(obje array vs.) tipleri tanımlamak için kullanılabilir</p></div>
+
+<pre><code>
+    //kullanım :
+//Type Aliases
+type CarYear = number
+type CarType = string
+type CarModel = string
+type Car3 = {
+    year: CarYear,
+    type: CarType,
+    model: CarModel
+}
+
+const carYear: CarYear = 2001
+const carType: CarType = "Toyota"
+const carModel: CarModel = "Corolla"
+const car3: Car3 = {
+    year: carYear,
+    type: carType,
+    model: carModel
+};
+//örnek
+type Animal = { name: string };
+type Bear = Animal & { honey: boolean };
+const bear: Bear = { name: "Winnie", honey: true };
+
+type Status = "success" | "error";
+let response: Status = "success";
+
+console.log(response);
+console.log(bear);
+console.log(typeof bear + " <-bear|response->" + typeof response);
+</code></pre>
+<output>
+    success
+    { name: 'Winnie', honey: true }
+    object <-bear|response->string
+</output>
+<hr>
+<h1>Interfaces</h1>
+<div class="explain"> <p></p></div>
+<pre><code>
+    interface Rectangle {
+  height: number,
+  width: number
+  sides: number[]
+};
+
+const rectangle: Rectangle = {
+  height: 20,
+  width: 10,
+  sides: [20, 10, 20, 10]
+};
+
+console.log(rectangle);
+
+console.log(typeof rectangle)
+</code></pre>
+
+<output>{ height: 20, width: 10, sides: [ 20, 10, 20, 10 ] }
+    object
+</output>
+
+<div class="explain"> <p>Interface merging example</p></div>
+<pre><code>
+interface Tool { name: string; }
+interface Tool { year: number; }
+const pen: Tool = { name: "Pen", year: 12 };
+console.log(typeof pen);
+console.log(pen)
+
+</code></pre>
+
+<output>
+    object
+    { name: 'Pen', year: 12 }
+</output>
+<hr>
+<h1></h1>
+<div class="explain"><p></p></div>
+
+<pre><code>
+
+</code></pre>
+
+<output></output>
+
+<hr>
+<h1></h1>
+<div class="explain"><p></p></div>
+
+<pre><code>
+
+</code></pre>
+
+<output></output>
+
+<hr>
+<h1></h1>
+<div class="explain"><p></p></div>
+
+<pre><code>
+
+</code></pre>
+
+<output></output>
+
+<hr>
+<h1></h1>
+<div class="explain"><p></p></div>
+
+<pre><code>
+
+</code></pre>
+
+<output></output>
+
+<hr>
 
 </body>
 </html>

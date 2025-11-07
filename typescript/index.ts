@@ -181,6 +181,12 @@ interface User {
     age?: number;
 }// Same as `number | undefined`
 
+// Nullish coalescing (??) - only uses default if value is null or undefined
+const value = input ?? 'default';
+
+// Optional chaining (?.) - safely access nested properties
+const street = user?.address?.street;
+
 
 // Null birleştirme ve Opsiyonel incirleme
 /*
@@ -242,10 +248,10 @@ const car: { type: string, model: string, year: number } = {
 };
 // Opsiyonel properties
 
-const car: { type: string, mileage: number } = { // Error: Property 'mileage' is missing in type '{ type: string; }' but required in type '{ type: string; mileage: number; }'.
+const car2: { type: string, mileage: number } = { // Error: Property 'mileage' is missing in type '{ type: string; }' but required in type '{ type: string; mileage: number; }'.
     type: "Toyota",
 };
-car.mileage = 2000; //  hata veriyor
+car2.mileage = 2000;
 
 const car1: { type: string, mileage?: number } = { // no error
     type: "Toyota"
@@ -253,13 +259,15 @@ const car1: { type: string, mileage?: number } = { // no error
 car1.mileage = 2000; //hata vermiyor
 
 //Index signatures
+// tanımlanmış bir property listesi olmayan nesneler için kullanılabilir
 
 const nameAgeMap: {[index: string]: number} = {};
 nameAgeMap.Jack = 2000;
+nameAgeMap.Mark = "Fifty"; // Error: Type 'string' is not assignable to type 'number'.
 
 // Enum is a group of constant(unchangeable).
 // Enumlar 0 dan başlatır default olarak, kendin tanımlarsan o etki yok olur.
-// Daha çok string Enum'lar kullanılıyor numerik enumlar'dan ziyada
+// Daha çok string Enum'lar kullanılıyor numerik enumlar'dan ziyade
 
 
 enum StatusCodes {
@@ -285,5 +293,30 @@ console.log(CardinalDirections.North);
 // logs "West"
 console.log(CardinalDirections.West);
 
+type CarYear = number
+type CarType = string
+type CarModel = string
+type Car3 = {
+    year: CarYear,
+    type: CarType,
+    model: CarModel
+}
 
+const carYear: CarYear = 2001
+const carType: CarType = "Toyota"
+const carModel: CarModel = "Corolla"
+const car3: Car3 = {
+    year: carYear,
+    type: carType,
+    model: carModel
+};
+
+type Animal = { name: string };
+type Bear = Animal & { honey: boolean };
+const bear: Bear = { name: "Winnie", honey: true };
+
+type Status = "success" | "error";
+let response: Status = "success";
+
+console.log(typeof response);
 
