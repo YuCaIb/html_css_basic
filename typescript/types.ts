@@ -323,3 +323,241 @@ class Rectangle implements Shape {
     }
 }
 
+// Basic Generics
+
+//Generics Funciton
+function createPair<S, T>(v1: S, v2: T): [S, T] {
+    return [v1, v2];
+}
+
+console.log(createPair<string, number>('hello', 42)); // ['hello', 42]
+
+//Generics Classses
+
+class NamedValue<T> {
+    private _value: T | undefined;
+
+    constructor(private name: string) {}
+
+    public setValue(value: T) {
+        this._value = value;
+    }
+
+    public getValue(): T | undefined {
+        return this._value;
+    }
+
+    public toString(): string {
+        return `${this.name}: ${this._value}`;
+    }
+}
+
+let value = new NamedValue<number>('myNumber');
+value.setValue(10);
+console.log(value.toString()); // myNumber: 10
+
+//Generics Type Aliases
+type Wrapped<T> = { value: T };
+
+const wrappedValue: Wrapped<number> = { value: 10 };
+
+// Deafult generics
+class SomeClass<T = string> {
+    private _value: T | undefined;
+
+    constructor(private name: string) {}
+
+    public setValue(value: T) {
+        this._value = value;
+    }
+
+    public getValue(): T | undefined {
+        return this._value;
+    }
+
+    public toString(): string {
+        return `${this.name}: ${this._value}`;
+    }
+}
+
+let deger = new SomeClass('myVal');
+deger.setValue('myValue');
+console.log(deger.toString()); // myNumber: myValue
+
+//Extends - constraints
+function createLoggedPair<S extends string | number, T extends string | number>(v1: S, v2: T): [S, T] {
+    console.log(`creating pair: v1='${v1}', v2='${v2}'`);
+    return [v1, v2];
+}
+
+// Type Utilty
+
+// Partial
+
+interface Point {
+    x: number;
+    y: number;
+}
+
+let pointPart : Partial<Point>= {}; //'Partial allows x and y to be optional.'
+
+pointPart.x =10;
+
+console.log(pointPart);
+
+// required
+
+interface Car {
+    make: string;
+    model: string;
+    mileage?: number;
+}
+
+let myCar: Required<Car> = {
+    make: 'Ford',
+    model: 'Focus',
+    mileage: 12000 // `Required` forces mileage to be defined
+};
+
+//Record
+
+const nameAge: Record<string, number> = {
+    'Alice': 21,
+    'Bob': 25
+};
+
+//Omit
+
+interface Zebra {
+    called: string;
+    age: number;
+    location?: string;
+}
+
+const zebra1: Omit<Zebra, 'age' | 'location'> = {
+    called: 'zebra1'
+    // `Omit` has removed age and location from the type and they can't be defined here
+};
+console.log(zebra1);
+
+//Pick removes all but the specified keys from an object type.
+interface Lion {
+    called: string;
+    age: number;
+    location?: string;
+}
+
+const lion: Pick<Lion, 'called'> = {
+    called: 'lion'
+    // `Pick` has only kept called, so age and location were removed from the type and they can't be defined here
+};
+
+//Exclude removes types from a union.
+
+type Primitive = string | number | boolean
+const val: Exclude<Primitive, string> = true; // a string cannot be used here since Exclude removed it from the type.
+
+//ReturnType extracts the return type of a function type.
+
+type PointGenerator = () => { x: number; y: number; };
+const point: ReturnType<PointGenerator> = {
+    x: 10,
+    y: 20
+};
+
+
+//Parameters extracts the parameter types of a function type as an array.
+type PointPrinter = (p: { x: number; y: number; }) => void;
+const dot: Parameters<PointPrinter>[0] = {
+    x: 10,
+    y: 20
+};
+
+//Keyof
+
+
+interface Someone {
+    called: string;
+    age: number;
+}
+// `keyof Person` here creates a union type of "name" and "age", other strings will not be allowed
+function printPersonProperty(person: Someone, property: keyof Someone) {
+    console.log(`Printing person property ${property}: "${person[property]}"`);
+}
+let pers = {
+    called: "Max",
+    age: 27
+};
+printPersonProperty(pers, "called"); // Printing person property name: "Max"
+
+
+
+interface House {
+    sqft: number;
+    yard?: {
+        sqft: number;
+    };
+}
+function printYardSize(house: House) {
+    const yardSize = house.yard?.sqft;
+    if (yardSize === undefined) {
+        console.log('No yard');
+    } else {
+        console.log(`Yard is ${yardSize} sqft`);
+    }
+}
+let home: House = {
+    sqft: 500
+};
+printYardSize(home);
+
+
+
+// Define types for our API response
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    role: 'admin' | 'user' | 'guest';
+}
+
+// Function that returns a Promise of User array
+async function fetchUsers(): Promise<User[]> {
+    console.log('Fetching users...');
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    return [
+        { id: 1, name: 'Alice', email: 'alice@example.com', role: 'admin' },
+        { id: 2, name: 'Bob', email: 'bob@example.com', role: 'user' }
+    ];
+}
+
+// Async function to process users
+async function processUsers() {
+    try {
+        // TypeScript knows users is User[]
+        const users = await fetchUsers();
+        console.log(`Fetched ${users.length} users`);
+
+        // Type-safe property access
+        const adminEmails = users
+            .filter(user => user.role === 'admin')
+            .map(user => user.email);
+
+        console.log('Admin emails:', adminEmails);
+        return users;
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error('Failed to process users:', error.message);
+        } else {
+            console.error('An unknown error occurred');
+        }
+        throw error; // Re-throw to let caller handle
+    }
+}
+
+// Execute the async function
+processUsers()
+    .then(users => console.log('Processing complete'))
+    .catch(err => console.error('Processing failed:', err));
+

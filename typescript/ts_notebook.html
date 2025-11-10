@@ -280,7 +280,8 @@ let ourTuple: [number, boolean, string];
 </code></pre>
 
 <pre><code>
-    const car: { type: string, mileage: number } = { // Error: Property 'mileage' is missing in type '{ type: string; }' but required in type '{ type: string; mileage: number; }'.
+    const car: { type: string, mileage: number } = {
+    // Error: Property 'mileage' is missing in type '{ type: string; }' but required in type '{ type: string; mileage: number; }'.
   type: "Toyota",
 };
 car.mileage = 2000;
@@ -383,7 +384,7 @@ console.log(typeof bear + " <-bear|response->" + typeof response);
 </output>
 <hr>
 <h1>Interfaces</h1>
-<div class="explain"> <p></p></div>
+<div class="explain"> <p>Arayüzler, tür takma adlarına benzer, ancak yalnızca nesne türlerine uygulanırlar</p></div>
 <pre><code>
     interface Rectangle {
   height: number,
@@ -659,17 +660,413 @@ class Rectangle implements Shape {
 
 <hr>
 
-<h1></h1>
-<div class="explain"><p></p></div>
+<h1>Basic Generics</h1>
+<div class="explain">
+    <p>Generics (jenerikler) type variables oluşturmaya olanak sağlar. Type variables (tür değişkenleri) class, fonksyion ve type aliases oluştururken kullanılan type'ın açıkça tanımlanmasına gerek olmayan durumlarda kullanılır.</p>
+    <p>Jenerikler, tekrar tekrar kullanılabilecek kodların yazımını kolaylaştırır.</p>
+    <p>Jenerik ile yazılmış fonksiyonlar, daha genellenebilir, girdi çıktı tipleri isabetli olur.</p>
+    <p>TypeScript ayrıca fonksiyon parametrelerinden genel parametrenin türünü de çıkarabilir.</p>
+    <p>Generics sınıflar oluşturmak için Map gibi jenerikler kullanılabilir.</p>
+    <p>Type Aliases jenerikler, daha kullanışlı yeniden kullanılabilir türler oluşturulmasına olanak tanır.</p>
+    <p>Jenerikler için default değer atanabilir.</p>
+    <p>Jeneriklere kısıtlamalar eklenebilir. Kısıtlamalar, jenerik tip kullanıldığında daha spesifik bir tipe güvenmeyi mümkün kılar.</p>
+</div>
 
 <pre><code>
+//Generic function
+function createPair &ltS, T&gt (v1: S, v2: T): [S, T] {
+    return [v1, v2];
+}
+
+console.log(createPair &ltstring, number&gt('hello', 42)); // ['hello', 42]
+
+
+</code></pre>
+
+<pre><code>
+    //Classes with generics
+    class NamedValue &ltT&gt {
+  private _value: T | undefined;
+
+  constructor(private name: string) {}
+
+  public setValue(value: T) {
+    this._value = value;
+  }
+
+  public getValue(): T | undefined {
+    return this._value;
+  }
+
+  public toString(): string {
+    return `${this.name}: ${this._value}`;
+  }
+}
+
+let value = new NamedValue &ltnumber&gt ('myNumber');
+value.setValue(10);
+console.log(value.toString()); // myNumber: 10
+</code></pre>
+
+<pre><code>
+    //Type Aliases
+
+    type Wrapped &ltT&gt = { value: T };
+
+    const wrappedValue: Wrapped &ltnumber&gt = { value: 10 };
+
+</code></pre>
+
+<pre><code>
+    //jeneriklere default değer atama
+    class NamedValue &ltT = string> {
+  private _value: T | undefined;
+
+  constructor(private name: string) {}
+
+  public setValue(value: T) {
+    this._value = value;
+  }
+
+  public getValue(): T | undefined {
+    return this._value;
+  }
+
+  public toString(): string {
+    return `${this.name}: ${this._value}`;
+  }
+}
+
+let value = new NamedValue('myval');
+value.setValue('myValue');
+console.log(value.toString()); // myNumber: myValue
+</code></pre>
+
+<pre>
+    <code>
+//Extends - constraints
+function createLoggedPair &ltS extends string | number, T extends string | number&gt(v1: S, v2: T): [S, T] {
+    console.log(`creating pair: v1='${v1}', v2='${v2}'`);
+    return [v1, v2];
+}
+    </code>
+</pre>
+
+<output>
+    [ 'hello', 42 ]
+
+    myNumber: 10
+
+    myVal: myValue
+</output>
+
+
+
+<hr>
+<h1>TypeScript Utility Types</h1>
+<div class="explain">
+    <p>TypeScript, genellikle yardımcı türler olarak adlandırılan bazı yaygın tür manipülasyonlarına yardımcı olabilecek çok sayıda türle birlikte gelir.</p>
+    <p>Bazı popüler utility; Partial, Required, Record, Omit, Pick, Exclude, ReturnType, Parameters, Readonly</p>
+    <p>Partial, bir nesnedeki tüm özelliklerin isteğe bağlı olmasını sağlar.</p>
+    <p>Required, bir nesnedeki tüm özelliklerin gerekli olmasını sağlar.</p>
+    <p>Record, belirli bir anahtar türü ve değer türü ile bir nesne türünü tanımlamanın kısayoludur.</p>
+    <p>Omit, bir nesne türünden anahtarları kaldırır.</p>
+    <p>Pick, nesne türünden belirtilen anahtarlar dışındaki tüm anahtarları kaldırır.</p>
+    <p>Exclude, ayırma işlemi gerçekleştirir.</p>
+    <p>ReturnType, bir fonksiyon tipinin dönüş tipini çıkarır.</p>
+    <p>Parametreler, bir fonksiyon tipinin parametre tiplerini bir dizi olarak çıkarır.</p>
+    <p>Readonly, tüm özelliklerin salt okunur olduğu, yani bir değer atandıktan sonra değiştirilemeyeceği yeni bir tür oluşturmak için kullanılır</p>
+    <p>!!örnekleri incele!!</p>
+</div>
+
+<pre><code>
+// Type Utilty
+
+// Partial
+
+interface Point {
+    x: number;
+    y: number;
+}
+
+let pointPart : Partial &ltPoint&gt= {}; //'Partial allows x and y to be optional.'
+
+pointPart.x =10;
+
+console.log(pointPart);
+</code></pre>
+
+<pre><code>
+    // required
+
+interface Car {
+    make: string;
+    model: string;
+    mileage?: number;
+}
+
+let myCar: Required &ltCar&gt = {
+    make: 'Ford',
+    model: 'Focus',
+    mileage: 12000 // `Required` forces mileage to be defined
+};
+</code></pre>
+
+
+<pre><code>
+
+//Record
+
+const nameAge: Record &ltstring, number&gt = {
+    'Alice': 21,
+    'Bob': 25
+};
+</code></pre>
+interface Person {
+name: string;
+age: number;
+location?: string;
+}
+
+const bob: Omit &ltPerson, 'age' | 'location'&gt = {
+name: 'Bob'
+// `Omit` has removed age and location from the type and they can't be defined here
+};
+<pre><code>
+//Pick removes all but the specified keys from an object type.
+interface Lion {
+    called: string;
+    age: number;
+    location?: string;
+}
+
+const lion: Pick &ltLion, 'called'> = {
+    called: 'lion'
+    // `Pick` has only kept called, so age and location were removed from the type and they can't be defined here
+};
+</code></pre>
+
+<pre><code>
+
+//Exclude removes types from a union.
+
+type Primitive = string | number | boolean
+const val: Exclude &ltPrimitive, string> = true; // a string cannot be used here since Exclude removed it from the type.
+</code></pre>
+
+<pre><code>
+
+//ReturnType extracts the return type of a function type.
+
+type PointGenerator = () => { x: number; y: number; };
+const point: ReturnType&ltPointGenerator&gt = {
+    x: 10,
+    y: 20
+};
+</code></pre>
+
+<pre><code>
+//Parameters extracts the parameter types of a function type as an array.
+type PointPrinter = (p: { x: number; y: number; }) => void;
+const point: Parameters&ltPointPrinter&gt[0] = {
+    x: 10,
+    y: 20
+    };
+</code></pre>
+
+<hr>
+<h1>keyof</h1>
+<div class="explain">
+    <p>keyof, TypeScript'te bir nesne türünden anahtar türünü çıkarmak için kullanılan bir anahtar sözcüktür.</p>
+    <p>explicit anahtarlara sahip bir nesne türünde kullanıldığında, keyof bu anahtarlarla bir birleşim türü oluşturur.</p>
+    <p>keyof ayrıca indeks türünü çıkarmak için indeks imzalarıyla birlikte de kullanılabilir.</p>
+</div>
+
+<pre><code>
+interface Person {
+  name: string;
+  age: number;
+}
+// `keyof Person` here creates a union type of "name" and "age", other strings will not be allowed
+function printPersonProperty(person: Person, property: keyof Person) {
+  console.log(`Printing person property ${property}: "${person[property]}"`);
+}
+let person = {
+  name: "Max",
+  age: 27
+};
+printPersonProperty(person, "name"); // Printing person property name: "Max"
+</code></pre>
+
+
+<pre><code>
+    //Keyof
+
+
+interface Someone {
+    called: string;
+    age: number;
+}
+// `keyof Person` here creates a union type of "name" and "age", other strings will not be allowed
+function printPersonProperty(person: Someone, property: keyof Someone) {
+    console.log(`Printing person property ${property}: "${person[property]}"`);
+}
+let pers = {
+    called: "Max",
+    age: 27
+};
+printPersonProperty(pers, "called"); /
+</code></pre>
+
+<pre><code>
+    type StringMap = { [key: string]: unknown };
+// `keyof StringMap` resolves to `string` here
+function createStringPair(property: keyof StringMap, value: string): StringMap {
+  return { [property]: value };
+}
+</code></pre>
+
+<output>
+    Printing person property called: "Max"
+</output>
+
+<hr>
+<h1> Async Progrraming</h1>
+<div class="explain">
+    <p>TypeScript, JavaScript'in asenkron yeteneklerini statik yazımla geliştirerek asenkron kodunuzu daha öngörülebilir ve sürdürülebilir hale getirir. Bu kılavuz, temel asenkron/await gelişmiş kalıplara kadar her şeyi kapsar.</p>
+    <p>Promises : Promise&lt;T&gt; (T jenerik tip.) - Promise&lt;void&gt; değer dönmeyen - Promise&lt;never&gt; asla resolve olmayan promisler için.</p>
+    <p>Promise.all ile paralel bir biçimde birden çok async operasyon işlemi yapılabilir.</p>
+    <p>TypeScript'teki tüm asenkron fonksiyonlar bir Promise döndürür.</p>
+
+</div>
+
+<pre><code>
+    //Basic promise example
+    // Create a typed Promise that resolves to a string
+const fetchGreeting = (): Promise &lt;string&gt; => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = Math.random() > 0.5;
+      if (success) {
+        resolve("Hello, TypeScript!");
+      } else {
+        reject(new Error("Failed to fetch greeting"));
+      }
+    }, 1000);
+  });
+};
+
+// Using the Promise with proper type inference
+fetchGreeting()
+  .then((greeting) => {
+    // TypeScript knows 'greeting' is a string
+    console.log(greeting.toUpperCase());
+  })
+  .catch((error: Error) => {
+    console.error("Error:", error.message);
+  });
+</code></pre>
+
+<pre><code>
+    //await/aysnc
+
+    // Define types for our API response
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: 'admin' | 'user' | 'guest';
+}
+
+// Function that returns a Promise of User array
+async function fetchUsers(): Promise &lt;User[]&gt; {
+  console.log('Fetching users...');
+  // Simulate API call
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return [
+    { id: 1, name: 'Alice', email: 'alice@example.com', role: 'admin' },
+    { id: 2, name: 'Bob', email: 'bob@example.com', role: 'user' }
+  ];
+}
+
+// Async function to process users
+async function processUsers() {
+  try {
+    // TypeScript knows users is User[]
+    const users = await fetchUsers();
+    console.log(`Fetched ${users.length} users`);
+
+    // Type-safe property access
+    const adminEmails = users
+      .filter(user => user.role === 'admin')
+      .map(user => user.email);
+
+    console.log('Admin emails:', adminEmails);
+    return users;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Failed to process users:', error.message);
+    } else {
+      console.error('An unknown error occurred');
+    }
+    throw error; // Re-throw to let caller handle
+  }
+}
+
+// Execute the async function
+processUsers()
+  .then(users => console.log('Processing complete'))
+  .catch(err => console.error('Processing failed:', err));
 
 </code></pre>
 
 <output>
-
+    No yard
+    Fetching users...
+    Fetched 2 users
+    Admin emails: [ 'alice@example.com' ]
+    Processing complete
 </output>
 
-<hr>
+<div class="explain"> <p>Paralel execution</p></div>
+<pre><code>
+// Different types of promises
+const fetchUser = (id: number): Promise<{ id: number; name: string }> =>
+  Promise.resolve({ id, name: `User ${id}` });
+
+const fetchPosts = (userId: number): Promise &ltArray&lt{ id: number; title: string }>> =>
+  Promise.resolve([     { id: 1, title: 'Post 1' },
+    { id: 2, title: 'Post 2' }
+  ]);
+
+const fetchStats = (userId: number): Promise<{ views: number; likes: number }> =>
+  Promise.resolve({ views: 100, likes: 25 });
+
+// Run all in parallel
+async function loadUserDashboard(userId: number) {
+  try {
+    const [user, posts, stats] = await Promise.all([
+      fetchUser(userId),
+      fetchPosts(userId),
+      fetchStats(userId)
+    ]);
+
+    // TypeScript knows the types of user, posts, and stats
+    console.log(`User: ${user.name}`);
+    console.log(`Posts: ${posts.length}`);
+    console.log(`Likes: ${stats.likes}`);
+
+    return { user, posts, stats };
+  } catch (error) {
+    console.error('Failed to load dashboard:', error);
+    throw error;
+  }
+}
+
+// Execute with a user ID
+loadUserDashboard(1);
+</code></pre>
+
+
 </body>
 </html>

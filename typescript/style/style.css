@@ -69,7 +69,7 @@ h1{
 }
 
 .explain::before{
-    content: "Clarification";
+    content: "Annotation";
     font-weight: bolder;
     position: relative;
 }
