@@ -202,3 +202,124 @@ function printStatusCode(code: string | number) {
 }*/
 
 //Functions
+//return değerinin type belirlenmesi :
+function getTime(): number {
+    return new Date().getTime();
+}
+function printHello(): void {
+    console.log('Hello!');
+}
+// parametrelerin tipinin belirlenmesi
+function multiply(a: number, b: number) {
+    return a * b;
+}
+//Opsiyonel paramtereler '?' ile gösterilir.
+// the `?` operator here marks parameter `c` as optional
+function add(a: number, b: number, c?: number) {
+    return a + b + (c || 0);
+}
+//Deafult parametreler
+function pow(value: number, exponent: number = 10) {
+    return value ** exponent;
+}
+//Named Parameters
+function divide({ dividend, divisor }: { dividend: number, divisor: number }) {
+    return dividend / divisor;
+}
+
+// Rest Parameters
+function add(a: number, b: number, ...rest: number[]) {
+    return a + b + rest.reduce((p, c) => p + c, 0);
+}
+
+//Type alias ile fonksiyon :
+type Negate = (value: number) => number;
+
+// in this function, the parameter `value` automatically gets assigned the type `number` from the type `Negate`
+const negateFunction: Negate = (value) => value * -1;
+
+// Casting (as)
+let x: unknown = 4;
+console.log((x as string).length); // prints undefined since numbers don't have a length
+
+// casting aslında verinin tipini değiştirmiyor, tekrar tanımlamıyor mesela bu örnekte çıktı number olarak gösteriliyor.
+console.log(typeof (x as string));
+
+//Typescript cast kullanılırken dahi, typecheck yapmaya devam eder mesela aşşağıdaki error throw ediyor, TypeScript, bir dizeyi sayıya dönüştürmenin, veriyi dönüştürmeden bir anlamı olmadığını bilir:
+console.log((4 as string).length);
+
+// <> kullanmak as kullanmak ile aynıdır. ikiside Casting yapar.
+console.log(<string> x )
+
+//Force Casting type errorları atlatmak için kullanılabilir.
+console.log(((x as unknown) as number).length);
+
+//Classes
+
+class Telefon {
+    marka: string;
+}
+const telefon = new Telefon();
+telefon.marka = 'Nokia';
+
+console.log(telefon);
+class Araba {
+    private name: string;
+
+    public constructor(name: string) {
+        this.name = name;
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+const araba = new Araba("toyota");
+console.log(araba.getName());
+
+
+class Laptop {
+    // name is a private member variable
+    public constructor(private name: string) {}
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+const laptop = new Laptop("Lenova");
+console.log(laptop.getName());
+
+
+//Readonly
+class Person {
+    private readonly name: string;
+
+    public constructor(name: string) {
+        // name cannot be changed after this initial definition, which has to be either at its declaration or in the constructor.
+        this.name = name;
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+const person = new Person("Jane");
+console.log(person.getName());
+
+
+//Inheritance
+interface Shape {
+    getArea: () => number;
+}
+
+class Rectangle implements Shape {
+    public constructor(protected readonly width: number, protected readonly height: number) {}
+
+    public getArea(): number {
+        return this.width * this.height;
+    }
+}
+

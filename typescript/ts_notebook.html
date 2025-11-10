@@ -512,7 +512,7 @@ function divide({ dividend, divisor }: { dividend: number, divisor: number }) {
   return dividend / divisor;
 }
 
-    Rest Parameters
+    // Rest Parameters
 function add(a: number, b: number, ...rest: number[]) {
   return a + b + rest.reduce((p, c) => p + c, 0);
 }
@@ -527,6 +527,138 @@ const negateFunction: Negate = (value) => value * -1;
 <output></output>
 
 <hr>
+<h1>Casting</h1>
+<div class="explain"><p>Değişkenlerin tiplerini override etmemiz gereken durumlar olabiliyor. Hazır kullandığımız kütüphanelerden gelen tipleri bazen override etmemiz gerekebiliyor..</p>
+    <p>"Casting is the process of overriding a type."</p>
+    <p>casting aslında verinin tipini değiştirmiyor, tekrar tanımlamıyor. Aşşağıda örneği var.</p>
+    <p>Typecheck yapılmaya devam edilir aşşağıdaki örnekte, error throw ediyor, TypeScript, bir dizeyi sayıya dönüştürmenin, veriyi dönüştürmeden bir anlamı olmadığını bilir</p>
+    <p> <> kullanmak as kullanmak ile aynıdır. Ancak TSX ile çalışırken işe yaramaz. </p>
+    <p>Casting yapmaya zorlamak için ilk önce unknown daha sonrada istenilen tipe cast edilme şekilnde gerçekleştirilir. bu şekilde Type error'lar override edilebilir.</p>
+</div>
+
+<pre><code>
+    let x: unknown = 4;
+console.log((x as string).length); // prints undefined since numbers don't have a length
+// casting aslında verinin tipini değiştirmiyor, tekrar tanımlamıyor mesela bu örnekte çıktı number olarak gösteriliyor.
+console.log(typeof (x as string));
+    --  Error throw edecek
+    //Typescript cast kullanılırken dahi, typecheck yapmaya devam eder mesela aşşağıdaki error throw ediyor, TypeScript, bir dizeyi sayıya dönüştürmenin, veriyi dönüştürmeden bir anlamı olmadığını bilir:
+console.log((4 as string).length);
+
+// <> kullanmak as kullanmak ile aynıdır. ikiside Casting yapar.
+
+    //Force Casting
+    console.log(((x as unknown) as number).length);
+
+    //Force Casting type errorları atlatmak için kullanılabilir.
+console.log(((x as unknown) as number).length);
+</code></pre>
+
+<output>
+    undefined
+    number
+    undefined
+    4
+    undefined
+</output>
+
+<hr>
+<h1>Class</h1>
+<div class="explain">
+    <p>Typescript, javascript classlarına tip ve modifier (public private protected) ekler.</p>
+    <p>public - class üyelerine her yerden erişim</p>
+    <p>private - sadece class içinde erişim</p>
+    <p>protected - sadece class üyesinin kendisinden ve onu miras alan sınıflardan. </p>
+    <p>Örneği incele.</p>
+    <p>TypeScript, parametreye bir görünürlük değiştiricisi ekleyerek sınıf üyelerini oluşturucuda tanımlamanın kullanışlı bir yolunu sağlar.</p>
+    <p>Arraylerde ki gibi readonly ile sadece okuma modunda tanımlamalar yapılabilr.</p>
+</div>
+
+<pre><code>
+class Telefon {
+marka: string;
+}
+const telefon = new Telefon();
+telefon.marka = 'Nokia';
+
+console.log(telefon);
+
+//Visiblity
+class Araba {
+private name: string;
+
+public constructor(name: string) {
+this.name = name;
+}
+
+public getName(): string {
+return this.name;
+}
+}
+
+const araba = new Araba("toyota");
+console.log(araba.getName());
+// constructor içindeki visiblity özelliğinin kullanımı :
+    class Laptop {
+    // name is a private member variable
+    public constructor(private name: string) {}
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+const laptop = new Laptop("Lenova");
+console.log(laptop.getName());
+
+    //Readonly
+class Person {
+    private readonly name: string;
+
+    public constructor(name: string) {
+        // name cannot be changed after this initial definition, which has to be either at its declaration or in the constructor.
+        this.name = name;
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+}
+
+const person = new Person("Jane");
+console.log(person.getName());
+</code></pre>
+
+
+<div class="explain">
+    <p></p>
+</div>
+<pre>
+    <code>
+        //Inheritance
+        interface Shape {
+  getArea: () => number;
+}
+
+class Rectangle implements Shape {
+  public constructor(protected readonly width: number, protected readonly height: number) {}
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+}
+
+    </code>
+</pre>
+
+<output>
+    Telefon { marka: 'Nokia' }
+    toyota
+    Lenova
+</output>
+
+<hr>
+
 <h1></h1>
 <div class="explain"><p></p></div>
 
@@ -534,9 +666,10 @@ const negateFunction: Negate = (value) => value * -1;
 
 </code></pre>
 
-<output></output>
+<output>
+
+</output>
 
 <hr>
-
 </body>
 </html>
